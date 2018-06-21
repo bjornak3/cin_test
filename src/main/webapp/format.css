@@ -1,0 +1,22 @@
+﻿* {
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	margin: 10px;
+}
+
+p {
+	margin: 10px;
+}
+
+label {
+	display: inline-block;
+	vertical-align: top;
+	width: 150px;
+}
+
+.error {
+	background-color: red;
+}

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="format.css">
+		<script>
+			var inputName;
+			var inputMail;
+			var inputPhone;
+			var selectTopic;
+			
+			function init() {
+				inputName = document.getElementById("name");
+				inputMail = document.getElementById("mail");
+				inputPhone = document.getElementById("phone");
+				selectTopic = document.getElementById("topic");
+			}
+
+			function validateForm() {
+				var valid = true;
+				valid = validateField(inputName, inputName.value.trim().length >= 5) && valid;
+				valid = validateField(inputMail, inputMail.value.trim().length >= 8 && inputMail.value.indexOf("@") != -1) && valid;
+				valid = validateField(inputPhone, inputPhone.value.trim().length >= 9) & valid;
+				valid = validateField(selectTopic, selectTopic.selectedIndex != 0) && valid;
+				return valid;
+			}
+			
+			function validateField(element, condition) {
+				if (!condition) {
+					element.classList.add("error");
+					return false;
+				}
+				else {
+					element.classList.remove("error");
+					return true;
+				}
+			}
+		</script>
+	</head>
+	<body onload="init();">
+		<h1>Kontaktformular</h1>
+		<form action="success.html" method="post" onsubmit="return validateForm();" novalidate>
+			<p>
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name">
+			</p>
+			<p>
+				<label for="mail">Email:</label>
+				<input type="email" id="mail" name="mail">
+			</p>
+			<p>
+				<label for="phone">Telefon:</label>
+				<input type="tel" id="phone" name="phone">
+			</p>
+			<p>
+				<label>Kontaktaufnahme:</label>
+				<input type="radio" id="contactingMail" name="contacting" value="M" checked> Email
+				<input type="radio" id="contactingPhone" name="contacting" value="P"> Telefon
+			</p>
+			<p>
+				<label for="topic">Thema:</label>
+				<select id="topic" name="topic" size="1">
+					<option value="">&lt;bitte auswählen&gt;</option>
+					<option value="I">Information anfordern</option>
+					<option value="R">Beschwerde einbringen</option>
+				</select>
+			</p>
+			<p>
+				<label for="note">Anmerkung:</label>
+				<textarea id="note" name="note" cols="25" rows="5"></textarea>
+			</p>
+			<p>
+				<label for="newsletter">&nbsp;</label>
+				<input type="checkbox" id="newsletter" name="newsletter" value="N" checked> Newsletter
+			</p>
+			<p>
+				<label for="submit">&nbsp;</label>
+				<input type="submit" id="submit" name="submit" value="Kontaktdaten abschicken">
+			</p>
+		</form>
+	</body>
+</html>
